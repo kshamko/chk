@@ -20,7 +20,12 @@
 
 Please follow the [link](https://github.com/kshamko/boilerplate/tree/master/gateway) to review the code / get more details about the approach 
 
-!!! ADD SWAGGER UI !!!
+---
+**NOTE**
+
+Please follow the [link](https://kshamko.github.io/chk/) to review swagger spec
+
+---
 
 ## Auth Service
 
@@ -30,7 +35,8 @@ Please follow the [link](https://github.com/kshamko/boilerplate/tree/master/gate
 
 Please follow the [link](https://github.com/kshamko/boilerplate/tree/master/grpc) to review the code / get more details about the approach 
 
-!!! ADD LINK TO PROTOFILE !!!
+
+<%@include file="api/auth.proto"%>
 
 ### Auth Service Architecture Diagram
 
@@ -46,7 +52,7 @@ Please follow the [link](https://github.com/kshamko/boilerplate/tree/master/grpc
 
 Please follow the [link](https://github.com/kshamko/boilerplate/tree/master/grpc) to review the code / get more details about the approach 
 
-!!! ADD LINK TO PROTOFILE !!!
+<%@include file="api/transactions.proto"%>
 
 ### Transactions Service Architecture Diagram
 
