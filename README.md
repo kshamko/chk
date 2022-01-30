@@ -20,7 +20,7 @@
 
 Please follow the [link](https://github.com/kshamko/boilerplate/tree/master/gateway) to review the code / get more details about the approach 
 
-## API Spec
+### API Spec
 
 Please follow the [link](https://kshamko.github.io/chk/) to review swagger spec
 
