@@ -1,0 +1,196 @@
+swagger: '2.0'
+info:
+  title: "Payment GW Swagger"
+  version: 0.0.1
+consumes:
+  - application/json
+produces:
+  - application/json
+basePath: /api/v1  
+paths:
+  /authorize:
+    post:
+      operationId: "auth"
+      tags:
+        - payment
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: Auth request object
+          required: true
+          schema:
+            $ref: '#/definitions/AuthRequest'
+
+      responses:
+        '200':
+          description: 'A successful response.'
+          schema:
+            $ref: '#/definitions/AuthResponse'
+        '500':
+          description: 'Error response'
+          schema: 
+            $ref: '#/definitions/ApiInvalidResponse'
+        '403':
+          description: 'unauthorized'
+          schema: 
+            $ref: '#/definitions/ApiInvalidResponse'
+            
+  /capture:
+    post:
+      operationId: "capture"
+      tags:
+        - payment
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: Capture request object
+          required: true
+          schema:
+            $ref: '#/definitions/TransactionRequest'
+
+      responses:
+        '200':
+          description: 'A successful response.'
+          schema:
+            $ref: '#/definitions/TransactionResponse'
+        '500':
+          description: 'Error response'
+          schema: 
+            $ref: '#/definitions/ApiInvalidResponse'
+        '403':
+          description: 'unauthorized'
+          schema: 
+            $ref: '#/definitions/ApiInvalidResponse'
+
+  /refund:
+    post:
+      operationId: "refund"
+      tags:
+        - payment
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: Refund request object
+          required: true
+          schema:
+            $ref: '#/definitions/TransactionRequest'
+
+      responses:
+        '200':
+          description: 'A successful response.'
+          schema:
+            $ref: '#/definitions/TransactionResponse'
+        '500':
+          description: 'Error response'
+          schema: 
+            $ref: '#/definitions/ApiInvalidResponse'
+        '403':
+          description: 'unauthorized'
+          schema: 
+            $ref: '#/definitions/ApiInvalidResponse'
+            
+  /void:
+    post:
+      operationId: "void"
+      tags:
+        - payment
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: Void request object
+          required: true
+          schema:
+            type: object
+            properties:
+              token: 
+                type: string            
+
+      responses:
+        '200':
+          description: 'A successful response.'
+          schema:
+            $ref: '#/definitions/TransactionResponse'
+        '500':
+          description: 'Error response'
+          schema: 
+            $ref: '#/definitions/ApiInvalidResponse'
+        '403':
+          description: 'unauthorized'
+          schema: 
+            $ref: '#/definitions/ApiInvalidResponse'          
+            
+definitions:
+  AuthRequest:
+    type: object
+    properties:
+      cc: 
+        $ref: "#/definitions/CreditCard"
+      amount:
+        $ref: "#/definitions/TransactionAmount"
+  
+  AuthResponse:
+    type: object
+    properties:
+      token:
+        type: string
+      amount:
+        $ref: "#/definitions/TransactionAmount"
+  
+  TransactionRequest:
+    type: object
+    properties:
+      token: 
+        type: string
+      amount:
+        $ref: "#/definitions/TransactionAmount"
+  
+  TransactionResponse:
+    type: object
+    properties:
+      amount:
+        $ref: "#/definitions/TransactionAmount"
+        
+  TransactionAmount:
+    type: object
+    properties:
+      amount:
+        type: number
+        format: float
+      currencyCode:
+        type: string
+          
+  CreditCard:
+    type: object
+    properties:
+      name:
+        type: string
+      number:
+        type: string
+      exp:
+        type: string
+      cvv:
+        type: string            
+        
+  ApiInvalidResponse:
+    type: object
+    properties:
+      code:
+        type: integer
+      message:
+        type: string
