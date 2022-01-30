@@ -20,12 +20,9 @@
 
 Please follow the [link](https://github.com/kshamko/boilerplate/tree/master/gateway) to review the code / get more details about the approach 
 
----
-**NOTE**
+## API Spec
 
 Please follow the [link](https://kshamko.github.io/chk/) to review swagger spec
-
----
 
 ## Auth Service
 
@@ -35,13 +32,45 @@ Please follow the [link](https://kshamko.github.io/chk/) to review swagger spec
 
 Please follow the [link](https://github.com/kshamko/boilerplate/tree/master/grpc) to review the code / get more details about the approach 
 
-
-<%@include file="api/auth.proto"%>
-
 ### Auth Service Architecture Diagram
 
-![high level diagram](./docs/images/authService.drawio.png)
+![auth diagram](./docs/images/authService.drawio.png)
 
+### Auth Service API spec
+
+```proto
+message AuthRequest {
+    CreditCard CC = 1;
+    Amount Amnt = 2;
+}
+
+message CreditCard {
+    string Num = 1;
+    string Name = 2;
+    string Date = 3;
+    string CVV = 4;
+}
+
+message Amount {
+    float Amount = 1;
+    string Currency = 2;    
+}
+
+message Token {
+    string Value = 1;    
+}
+
+message Resp {
+    Token Token = 1;
+    Amount Amount = 2;
+}
+
+service AuthService {
+    rpc Authorize(AuthRequest) returns (Resp);
+    rpc Validate(Token) returns (Resp);
+    rpc Unauthorize(Token) returns (Resp);
+} 
+```
 
 ## Transactions service
 
@@ -52,12 +81,36 @@ Please follow the [link](https://github.com/kshamko/boilerplate/tree/master/grpc
 
 Please follow the [link](https://github.com/kshamko/boilerplate/tree/master/grpc) to review the code / get more details about the approach 
 
-<%@include file="api/transactions.proto"%>
-
 ### Transactions Service Architecture Diagram
 
-![high level diagram](./docs/images/transactionService.drawio.png)
+![transactions diagram](./docs/images/transactionService.drawio.png)
 
+### Transactions Service API Spec
+
+```proto
+message TransactionRequest {
+    Token Token = 1;
+    Amount Amnt = 2;
+}
+
+message Amount {
+    float Amount = 1;
+    string Currency = 2;    
+}
+
+message Token {
+    string Value = 1;    
+}
+
+message Resp {
+    bool OK = 1;
+    string TransactionID = 2;
+}
+
+service AuthService {
+    rpc Transaction(AuthRequest) returns (Resp);
+} 
+```
 
 ## Sequence Diagrams
 

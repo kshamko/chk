@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+package grpcapi;
+option go_package = "pkg/grpcapi";
+
+import "google/protobuf/empty.proto";
+
+message TransactionRequest {
+    Token Token = 1;
+    Amount Amnt = 2;
+}
+
+message Amount {
+    float Amount = 1;
+    string Currency = 2;    
+}
+
+message Token {
+    string Value = 1;    
+}
+
+message Resp {
+    bool OK = 1;
+    string TransactionID = 2;
+}
+
+service AuthService {
+    rpc Transaction(AuthRequest) returns (Resp);
+} 

@@ -1,0 +1,38 @@
+syntax = "proto3";
+
+package grpcapi;
+option go_package = "pkg/grpcapi";
+
+import "google/protobuf/empty.proto";
+
+message AuthRequest {
+    CreditCard CC = 1;
+    Amount Amnt = 2;
+}
+
+message CreditCard {
+    string Num = 1;
+    string Name = 2;
+    string Date = 3;
+    string CVV = 4;
+}
+
+message Amount {
+    float Amount = 1;
+    string Currency = 2;    
+}
+
+message Token {
+    string Value = 1;    
+}
+
+message Resp {
+    Token Token = 1;
+    Amount Amount = 2;
+}
+
+service AuthService {
+    rpc Authorize(AuthRequest) returns (Resp);
+    rpc Validate(Token) returns (Resp);
+    rpc Unauthorize(Token) returns (Resp);
+} 
