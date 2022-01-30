@@ -9,7 +9,7 @@
 
 ## High Level Diagram of the System
 
-![high level diagram](./doc/images/highlevel.drawio.png)
+![high level diagram](./docs/images/highlevel.drawio.png)
 
 ## API Gateway
 
@@ -34,7 +34,7 @@ Please follow the [link](https://github.com/kshamko/boilerplate/tree/master/grpc
 
 ### Auth Service Architecture Diagram
 
-![high level diagram](./doc/images/authService.drawio.png)
+![high level diagram](./docs/images/authService.drawio.png)
 
 
 ## Transactions service
@@ -50,15 +50,15 @@ Please follow the [link](https://github.com/kshamko/boilerplate/tree/master/grpc
 
 ### Transactions Service Architecture Diagram
 
-![high level diagram](./doc/images/transactionService.drawio.png)
+![high level diagram](./docs/images/transactionService.drawio.png)
 
 
 ## Sequence Diagrams
 
 ### Auth
 
-![auth flow](./doc/images/auth.png)
+![auth flow](./docs/images/auth.png)
 
 ### Transaction
 
-![transaction flow](./doc/images/transaction.png)
+![transaction flow](./docs/images/transaction.png)
