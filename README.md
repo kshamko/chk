@@ -42,6 +42,7 @@ Please follow the [link](https://github.com/kshamko/boilerplate/tree/master/grpc
 1. gRPC is used as communication protocol
 2. Auth Service is written in Golang
 3. API described with protofile
+4. We need distributed locks system to control concurrent access to particular user's transactions
 
 Please follow the [link](https://github.com/kshamko/boilerplate/tree/master/grpc) to review the code / get more details about the approach 
 
@@ -52,6 +53,12 @@ Please follow the [link](https://github.com/kshamko/boilerplate/tree/master/grpc
 ![high level diagram](./doc/images/transactionService.drawio.png)
 
 
-### Auth Flow
+## Sequence Diagrams
 
-![high level diagram](./doc/images/auth.png)
+### Auth
+
+![auth flow](./doc/images/auth.png)
+
+### Transaction
+
+![transaction flow](./doc/images/transaction.png)
